@@ -1,0 +1,54 @@
+{
+  "plugin_type": "widget",
+  "name": "Insert HTML (Optimizely Support)",
+  "edit_page_url": "https://www.bartleby.com/",
+  "form_schema": [
+    {
+      "default_value": "beforebegin",
+      "field_type": "dropdown",
+      "name": "position",
+      "label": "Position",
+      "options": {
+        "choices": [
+          {
+            "value": "beforebegin",
+            "label": "Before"
+          },
+          {
+            "value": "afterbegin",
+            "label": "At the beginning of"
+          },
+          {
+            "value": "beforeend",
+            "label": "At the end of"
+          },
+          {
+            "value": "afterend",
+            "label": "After"
+          }
+        ]
+      }
+    },
+    {
+      "default_value": "#__next > div > div.pages__Header-sc-1cvqael-25.gpTFMu > div",
+      "field_type": "selector",
+      "name": "selector",
+      "label": "Selector",
+      "options": null
+    },
+    {
+      "default_value": "<div>Hello World</div>",
+      "field_type": "html",
+      "name": "html",
+      "label": "HTML",
+      "options": null
+    }
+  ],
+  "description": "",
+  "options": {
+    "apply_js": "var $ = window.optimizely.get('jquery');\n\n$(document).ready(function() {\n  setTimeout(function() {\n  document.querySelector(extension.selector).insertAdjacentHTML(extension.position, extension.$html);\n  }, 100);\n});\n\n\n",
+    "html": "{{{extension.html}}}\n\n",
+    "css": ".insert-html {\n  background-color: #fff575;\n  border-bottom: 1px solid #e0d769;\n  color: #555;\n  padding: 10px;\n  font-weight: bold;\n  text-align: center;\n  font-size: 20px;\n}",
+    "undo_js": "var extensionElement = document.getElementById('optimizely-extension-' + extension.$instance);\nif (extensionElement) {\n  extensionElement.parentElement.removeChild(extensionElement);\n}\n"
+  }
+}
